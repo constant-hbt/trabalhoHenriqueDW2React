@@ -7,6 +7,10 @@ class ProdutoServices{
         return axios.get(URL_BASE + "/all");
     }
 
+    getProdutoById(id){
+        return axios.get(URL_BASE + "/product/" + id);
+    }
+
     createProduto(produto){
         return axios.post(URL_BASE + "/add", produto);
     }

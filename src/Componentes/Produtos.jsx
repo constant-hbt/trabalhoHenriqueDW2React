@@ -40,7 +40,7 @@ class Produtos extends Component {
     }
 
     editar(id){
-
+        this.props.history.push("/produto/" + id);
     }
 
     novoProduto(){
@@ -51,7 +51,7 @@ class Produtos extends Component {
         return (
             <Container>
                 <Row>
-                    <h1>Usuários</h1>    
+                    <h1>Produtos</h1>    
                 </Row>
                 <Row>
                     <Button variant="link" onClick={this.voltar}>Voltar</Button>

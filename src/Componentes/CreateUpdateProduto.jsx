@@ -7,6 +7,7 @@ class CreateUpdateProduto extends Component {
     constructor(props){
         super(props);
         this.state = {
+            idProduto: this.props.match.params.id,
             descricao: "",
             quantidade: "",
             valor: ""
@@ -19,7 +20,20 @@ class CreateUpdateProduto extends Component {
     }
 
     componentDidMount(){
-
+        if(this.state.idProduto == "_add"){
+            return false;
+        }else{
+            return ProdutoServices.getProdutoById(this.state.idProduto).then(
+                (res) => {
+                    let produto = res.data;
+                    this.setState({
+                        descricao: produto.descricao,
+                        quantidade: produto.quantidade,
+                        valor: produto.quantidade
+                    });
+                }
+            );
+        }
     }
 
     changeDescricaoHandler(event){
@@ -45,14 +59,25 @@ class CreateUpdateProduto extends Component {
             valor: this.state.valor
         }
 
-        ProdutoServices.createProduto(produto).then(
-            (res) => {
-                alert("Descrição: " + res.data.idProduto + 
-                    ", Quantidade: " + res.data.quantidade + 
-                    ", Valor: " + res.data.valor);
-                this.props.history.push("/produtos");
-            }
-        );
+        if(this.state.idProduto === "_add"){
+            ProdutoServices.createProduto(produto).then(
+                (res) => {
+                    alert("Descrição: " + res.data.idProduto + 
+                        ", Quantidade: " + res.data.quantidade + 
+                        ", Valor: " + res.data.valor);
+                    this.props.history.push("/produtos");
+                }
+            );
+        }else{
+            produto.idProduto = this.state.idProduto;
+            ProdutoServices.editProduto(produto).then(
+                (res) => {
+                    console.log(res.data);
+                    this.props.history.push("/produtos");
+                }
+            );
+        }
+        
     }
 
     render() {
