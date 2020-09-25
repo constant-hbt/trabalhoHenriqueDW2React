@@ -10,10 +10,10 @@ class Produtos extends Component {
             produtos: []
         }
 
-        /* this.voltar = this.voltar.bind(this);
-        this.novoUsuario = this.novoProduto.bind(this);
-        this.editar = this.editar.bind(this);
-        this.excluir = this.excluir.bind(this); */
+        this.voltar = this.voltar.bind(this);
+        // this.novoUsuario = this.novoProduto.bind(this);
+        // this.editar = this.editar.bind(this);
+        // this.excluir = this.excluir.bind(this); 
     }
 
     componentDidMount(){
@@ -24,6 +24,10 @@ class Produtos extends Component {
         ProdutoServices.getProdutos().then(
             (resposta) => this.setState({produtos:resposta.data})
         );
+    }
+
+    voltar(){
+        this.props.history.push("/");
     }
 
     render() {
