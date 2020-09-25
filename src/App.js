@@ -6,6 +6,7 @@ import Footer from './Componentes/Footer';
 import Home from './Componentes/Home';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Produtos from './Componentes/Produtos';
+import CreateUpdateProduto from './Componentes/CreateUpdateProduto';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/produtos" component={Produtos}></Route>
+          <Route path="/produto/:id" component={CreateUpdateProduto}></Route>
         </Switch>
         <Footer/>
       </Router>

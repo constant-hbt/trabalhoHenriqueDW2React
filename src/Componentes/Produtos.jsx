@@ -44,7 +44,7 @@ class Produtos extends Component {
     }
 
     novoProduto(){
-
+        this.props.history.push("/produto/_add");
     }
 
     render() {
@@ -103,7 +103,7 @@ class Produtos extends Component {
                         <Button className="float-left" variant="link" onClick={this.voltar}>Voltar</Button>
                     </Col>
                     <Col>
-                        <Button className="float-right" variant="secondary" onClick={() => this.novoProduto}>Novo Produto</Button>
+                        <Button className="float-right" variant="secondary" onClick={this.novoProduto}>Novo Produto</Button>
                     </Col>
                 </Row>
             </Container>

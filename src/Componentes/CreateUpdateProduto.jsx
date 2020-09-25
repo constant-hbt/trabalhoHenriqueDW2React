@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Container, Form, Row } from 'react-bootstrap';
+import ProdutoServices from '../Servicos/ProdutoServices';
 
 class CreateUpdateProduto extends Component {
 
@@ -35,6 +36,23 @@ class CreateUpdateProduto extends Component {
 
     cancelar(){
         this.props.history.push("/produtos");
+    }
+
+    salvarProduto(){
+        let produto = {
+            descricao: this.state.descricao,
+            quantidade: this.state.quantidade,
+            valor: this.state.valor
+        }
+
+        ProdutoServices.createProduto(produto).then(
+            (res) => {
+                alert("Descrição: " + res.data.idProduto + 
+                    ", Quantidade: " + res.data.quantidade + 
+                    ", Valor: " + res.data.valor);
+                this.props.history.push("/produtos");
+            }
+        );
     }
 
     render() {
