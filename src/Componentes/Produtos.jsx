@@ -11,9 +11,9 @@ class Produtos extends Component {
         }
 
         this.voltar = this.voltar.bind(this);
-        // this.novoUsuario = this.novoProduto.bind(this);
-        // this.editar = this.editar.bind(this);
-        // this.excluir = this.excluir.bind(this); 
+        this.novoProduto = this.novoProduto.bind(this);
+        this.editar = this.editar.bind(this);
+        this.excluir = this.excluir.bind(this); 
     }
 
     componentDidMount(){
@@ -28,6 +28,23 @@ class Produtos extends Component {
 
     voltar(){
         this.props.history.push("/");
+    }
+
+    excluir(id){
+        ProdutoServices.deleteProduto(id).then(
+            res => {
+                alert(res.data);
+                this.getProdutos();
+            }
+        );
+    }
+
+    editar(id){
+
+    }
+
+    novoProduto(){
+
     }
 
     render() {
@@ -86,7 +103,7 @@ class Produtos extends Component {
                         <Button className="float-left" variant="link" onClick={this.voltar}>Voltar</Button>
                     </Col>
                     <Col>
-                        <Button className="float-right" variant="secondary" onClick={this.novoProduto}>Novo Produto</Button>
+                        <Button className="float-right" variant="secondary" onClick={() => this.novoProduto}>Novo Produto</Button>
                     </Col>
                 </Row>
             </Container>
