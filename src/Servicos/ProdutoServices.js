@@ -7,12 +7,12 @@ class ProdutoServices{
         return axios.get(URL_BASE + "/all");
     }
 
-    createProduto(){
-
+    createProduto(produto){
+        return axios.post(URL_BASE + "/add", produto);
     }
 
-    editProduto(){
-
+    editProduto(produto){
+        return axios.put(URL_BASE + "/update/" + produto.idProduto, produto);
     }
 
     deleteProduto(id){
